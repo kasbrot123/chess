@@ -14,7 +14,13 @@
 
 
 
-void copy(const int Board[8][8], int (&Board_new)[8][8]) {
+std::vector<std::vector<int>> copy(std::vector<std::vector<int>> Board) {
+
+    std::vector<std::vector<int>> Board_new;
+    std::vector<int> empty = {0,0,0,0,0,0,0,0};
+    for (int i = 0; i < 8; i++) {
+        Board_new.push_back(empty);
+    }
 
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
@@ -22,10 +28,10 @@ void copy(const int Board[8][8], int (&Board_new)[8][8]) {
         }
     }
 
-
+    return Board_new;
 }
 
-int calculateScore(const int (&Board)[8][8], int Player) {
+int calculateScore(std::vector<std::vector<int>> Board, int Player) {
 
     int Score = 0;
     int New;
@@ -39,13 +45,13 @@ int calculateScore(const int (&Board)[8][8], int Player) {
         }
     }
 
+    return 1;
     return Score;
 }
 
 
 
-int bestMove(int *Board[8][8], int Player, int depth, int max_depth, std::string LastMove, Coordinates &Best) {
-
+int bestMove(std::vector<std::vector<int>> Board, int Player, int depth, int max_depth, std::string LastMove, Coordinates &Best) {
 
     int max_decisions = 10;
     int figure;
@@ -53,13 +59,14 @@ int bestMove(int *Board[8][8], int Player, int depth, int max_depth, std::string
     std::vector<std::pair<Coordinates, int>> moves_and_scores;
     std::vector<int> moves_one_figure;
     std::vector<int> moves_best;
-    int Board_new[8][8];
+    //int Board_new[8][8];
+    std::vector<std::vector<int>> Board_new;
     Coordinates Move;
     Coordinates best_next;
     int Score;
     int n_moves_and_scores;
     int Score_max = 0;
-    int n_best = 10;
+    int n_best;
     
 
     for (int i = 0; i<8; i++) {
@@ -78,7 +85,7 @@ int bestMove(int *Board[8][8], int Player, int depth, int max_depth, std::string
                     Move.x2 = moves_one_figure[m] % 10;
                     Move.z2 = moves_one_figure[m] / 10;
                     
-                    copy(Board, Board_new);
+                    Board_new = copy(Board);
                     move_figure(Board_new, Move, en_passant_logic);
                     
                     Score = calculateScore(Board_new, Player);
@@ -128,7 +135,7 @@ int bestMove(int *Board[8][8], int Player, int depth, int max_depth, std::string
 
         for (int i = 0; i < n_best; i++) {
             
-            copy(Board, Board_new);
+            Board_new = copy(Board);
             move_figure(Board_new, moves_and_scores[i].first, en_passant_logic);
             Score = bestMove(Board_new, -Player, depth, max_depth, moveToString(moves_and_scores[i].first), best_next) + moves_and_scores[i].second;
 

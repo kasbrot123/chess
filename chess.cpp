@@ -15,7 +15,7 @@
 
 
 
-int false_move(std::string Input, int (&Board)[8][8], std::string &Message, int Player, std::string LastMove, int &enPassant) {
+int false_move(std::string Input, std::vector<std::vector<int>> Board, std::string &Message, int Player, std::string LastMove, int &enPassant) {
     
     // invalid input length (e2-e4)
     Message = "Not the right format, e.g. e2-e4";
@@ -98,8 +98,8 @@ int main(void) {
     //int main_figures[8] = {4, 2, 3, 5, 6, 3, 2, 4};
     std::vector<int> main_figures = {4, 2, 3, 5, 6, 3, 2, 4};
     std::vector<int> pawns = {1,1,1,1,1,1,1,1};
-    std::vector<int> main_figures2 = {4, 2, 3, 5, 6, 3, 2, 4};
-    std::vector<int> pawns2 = {1,1,1,1,1,1,1,1};
+    std::vector<int> main_figures2 = {-4, -2, -3, -5, -6, -3, -2, -4};
+    std::vector<int> pawns2 = {-1,-1,-1,-1,-1,-1,-1,-1};
     std::vector<int> empty = {0,0,0,0,0,0,0,0};
 
     //int board[8][8];
@@ -110,7 +110,7 @@ int main(void) {
     board.push_back(empty);
     board.push_back(empty);
     board.push_back(empty);
-    board.push_back(main_figures);
+    board.push_back(pawns);
     board.push_back(main_figures);
     /*
     for (int i = 0; i<8; i++) {

@@ -6,7 +6,7 @@
 void print_help(void);
 
 // prints the board from 8 by 8 arrays
-void plot_board(int (&Board)[8][8], std::string Title);
+void plot_board(std::vector<std::vector<int>> Board, std::string Title);
 
 
 

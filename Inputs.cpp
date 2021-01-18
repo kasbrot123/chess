@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include<windows.h>
 
 #include "Inputs.h"
@@ -8,9 +9,10 @@
 
 
 
-int inputComputer(int (&Board)[8][8], int Player, std::string &input, std::string LastMove) {
+int inputComputer(std::vector<std::vector<int>> Board, int Player, std::string &input, std::string LastMove) {
     
     int sleep_time = 4000;
+    int score;
     Coordinates best;
 
     // starting input
@@ -19,12 +21,12 @@ int inputComputer(int (&Board)[8][8], int Player, std::string &input, std::strin
     
 
 
-    bestMove(Board, Player, 1, 4, LastMove, best);
-
+    score = bestMove(Board, Player, 1, 2, LastMove, best);
 
     input = moveToString(best);
 
     std::cout << "best: " << input << std::endl;
+    std::cout << "score " << score << std::endl;
     Sleep(sleep_time);
 
     
