@@ -21,7 +21,7 @@ int inputComputer(std::vector<std::vector<int>> Board, int Player, std::string &
     
 
 
-    score = bestMove(Board, Player, 1, 2, LastMove, best);
+    score = bestMove(Board, Player, 1, 4, LastMove, best);
 
     input = moveToString(best);
 
