@@ -221,7 +221,7 @@ int main(void) {
         turns_str.push_back(input);
         player = -player;
 
-        move_figure(board, move, enPassant);
+        board = move_figure(board, move, enPassant);
 
  
 

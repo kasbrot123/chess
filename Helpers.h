@@ -13,7 +13,7 @@ int Code(int z, int x);
 int char_to_num(char letter);
 Coordinates coordsMove(std::string Input);
 int on_board(int x, int y);
-void move_figure(std::vector<std::vector<int>> &Board, Coordinates Move, int enPassant_logic);
+std::vector<std::vector<int>> move_figure(std::vector<std::vector<int>> Board, Coordinates Move, int enPassant_logic);
 std::string moveToString(Coordinates move);
 
 #endif

@@ -17,14 +17,19 @@ int inputComputer(std::vector<std::vector<int>> Board, int Player, std::string &
 
     // starting input
     std::cout << std::endl << std::endl;
-    std::cout << "Player " << (3-Player)/2 << "> thinking...";
+    std::cout << "Player " << (3-Player)/2 << "> thinking..." << std::endl;
     
 
+    int michi = 0;
+    score = bestMove(Board, Player, 1, 4, LastMove, best, michi);
+    if (best.x1 == -1) {
+        std::cout << "no move possible" << std::endl;
+        input = "quit";
+    } else {
+        input = moveToString(best);
+    }
 
-    score = bestMove(Board, Player, 1, 4, LastMove, best);
-
-    input = moveToString(best);
-
+    std::cout << michi << " number" << std::endl;
     std::cout << "best: " << input << std::endl;
     std::cout << "score " << score << std::endl;
     //Sleep(sleep_time);

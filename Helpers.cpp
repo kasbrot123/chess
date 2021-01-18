@@ -1,6 +1,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <iostream>
 
 #include "Helpers.h"
 
@@ -75,7 +76,7 @@ int on_board(int x, int y) {
 }
 
 
-void move_figure(std::vector<std::vector<int>> &Board, Coordinates Move, int enPassant_logic) {
+std::vector<std::vector<int>> move_figure(std::vector<std::vector<int>> Board, Coordinates Move, int enPassant_logic) {
 
   
     int figure, dir;
@@ -85,8 +86,8 @@ void move_figure(std::vector<std::vector<int>> &Board, Coordinates Move, int enP
     Board[Move.z1][Move.x1] = 0;
     Board[Move.z2][Move.x2] = figure;
 
-    if (enPassant_logic) 
-        Board[Move.z2+dir][Move.x2] = 0;
+    //if (enPassant_logic) 
+    //    Board[Move.z2+dir][Move.x2] = 0;
 
-
+    return Board;
 }
