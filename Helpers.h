@@ -12,8 +12,10 @@ struct Coordinates {
 int Code(int z, int x);
 int char_to_num(char letter);
 Coordinates coordsMove(std::string Input);
-int on_board(int x, int y);
-std::vector<std::vector<int>> move_figure(std::vector<std::vector<int>> Board, Coordinates Move, int enPassant_logic);
 std::string moveToString(Coordinates move);
+std::vector<std::vector<int>> init_board(void);
+void print_moves(std::vector<std::string> &Turns_str);
+
+
 
 #endif

@@ -66,28 +66,46 @@ std::string moveToString(Coordinates move) {
 }
 
 
-// coordinates in 0..7
-int on_board(int x, int y) {
 
-    if (x < 0 || x > 7 || y < 0 || y > 7)
-        return 0;
+std::vector<std::vector<int>> init_board(void) {
     
-    return 1;
+    //int main_figures[8] = {4, 2, 3, 5, 6, 3, 2, 4};
+    std::vector<int> main_figures = {4, 2, 3, 5, 6, 3, 2, 4};
+    std::vector<int> pawns = {1,1,1,1,1,1,1,1};
+    std::vector<int> main_figures2 = {-4, -2, -3, -5, -6, -3, -2, -4};
+    std::vector<int> pawns2 = {-1,-1,-1,-1,-1,-1,-1,-1};
+    std::vector<int> empty = {0,0,0,0,0,0,0,0};
+
+    //int board[8][8];
+    std::vector<std::vector<int>> board;
+    board.push_back(main_figures2);
+    board.push_back(pawns2);
+    board.push_back(empty);
+    board.push_back(empty);
+    board.push_back(empty);
+    board.push_back(empty);
+    board.push_back(pawns);
+    board.push_back(main_figures);
+
+    return board;
+
 }
 
 
-std::vector<std::vector<int>> move_figure(std::vector<std::vector<int>> Board, Coordinates Move, int enPassant_logic) {
+void print_moves(std::vector<std::string> &Turns_str) {
+        int num_turn = 1;
+        for (unsigned int i = 0; i < Turns_str.size(); i++){
+            if (i % 2 == 0) {
+                std::cout << num_turn << ". ";
+                num_turn++;
 
-  
-    int figure, dir;
-
-    figure = Board[Move.z1][Move.x1];
-    dir = figure/abs(figure);
-    Board[Move.z1][Move.x1] = 0;
-    Board[Move.z2][Move.x2] = figure;
-
-    //if (enPassant_logic) 
-    //    Board[Move.z2+dir][Move.x2] = 0;
-
-    return Board;
+                std::cout << Turns_str[i] << ", ";
+            } else {
+                std::cout << Turns_str[i] << " ";
+            }
+            
+        }
+    
 }
+
+

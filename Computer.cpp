@@ -7,7 +7,7 @@
 #include <cmath>
 
 #include "Computer.h"
-#include "Validation.h"
+#include "Gamelogic.h"
 #include "Helpers.h"
 
 

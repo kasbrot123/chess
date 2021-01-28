@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-//#include <windows.h>
+#include <windows.h>
 
 #include "Inputs.h"
 #include "Computer.h"
@@ -32,7 +32,7 @@ int inputComputer(std::vector<std::vector<int>> Board, int Player, std::string &
     std::cout << michi << " number" << std::endl;
     std::cout << "best: " << input << std::endl;
     std::cout << "score " << score << std::endl;
-    //Sleep(sleep_time);
+    Sleep(sleep_time);
 
     
 
