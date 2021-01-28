@@ -132,9 +132,57 @@ int bestMove(std::vector<std::vector<int>> Board, int Player, int depth, int max
     }
 
     return Score_max;
+}
 
+
+int Check(std::vector<std::vector<int>> Board, int Player) {
+
+    //int check = 0;
+    int figure;
+    int king;
+    int enpassent_dummy = 0;
+    std::vector<int> moves;
+
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+
+            figure = Board[i][j];
+            if (figure * Player == 6) {
+                king = i*10 + j;
+
+                i = 8;
+                j = 8;
+            }
+        }
+    }
+
+
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+
+            if (Board[i][j] == 0) {
+                continue;
+            }
+            
+            moves = valid_moves(Board, j, i, "X0-X0", enpassent_dummy);
+
+            
+            for (unsigned int k = 0; k < moves.size(); k++) {
+                if (moves[k] == king) {
+                    return 1;
+                }
+
+            }
+            
+        }
+    }
+    
+    
+
+    return 0;
 
 
 }
+
 
 

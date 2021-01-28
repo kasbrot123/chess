@@ -169,7 +169,8 @@ std::vector<int> valid_moves(std::vector<std::vector<int>> Board, int x, int z, 
 std::vector<std::vector<int>> move_figure(std::vector<std::vector<int>> Board, Coordinates Move, int enPassant_logic) {
 
   
-    int figure, dir;
+    int figure;
+    int dir;
 
     figure = Board[Move.z1][Move.x1];
     dir = figure/abs(figure);
@@ -228,6 +229,8 @@ int false_move(std::string Input, std::vector<std::vector<int>> Board, std::stri
     int enPassantMove;
     std::vector<int> moves = valid_moves(Board, x1, z1, LastMove, enPassantMove);
     int move_possible = 0;
+    std::vector<std::vector<int>> future_board;
+
 
     for (unsigned int i = 0; i < moves.size(); i++) {
         std::cout << "moving " << moves[i] << std::endl;
@@ -246,4 +249,8 @@ int false_move(std::string Input, std::vector<std::vector<int>> Board, std::stri
     Message = "";
     return 0;
 }
+
+
+
+
 

@@ -6,7 +6,7 @@
 #include "Inputs.h"
 #include "Computer.h"
 #include "Helpers.h"
-
+#include "Gamelogic.h"
 
 
 int inputComputer(std::vector<std::vector<int>> Board, int Player, std::string &input, std::string LastMove) {
@@ -29,12 +29,12 @@ int inputComputer(std::vector<std::vector<int>> Board, int Player, std::string &
         input = moveToString(best);
     }
 
+    std::cout << "check: " << Check(Board, Player) << std::endl;
     std::cout << michi << " number" << std::endl;
     std::cout << "best: " << input << std::endl;
     std::cout << "score " << score << std::endl;
     Sleep(sleep_time);
 
-    
 
     return 0;
 

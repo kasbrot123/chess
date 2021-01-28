@@ -45,6 +45,9 @@ int main(void) {
         // print board
         plot_board(board, title);
         
+        if (Check(board, player))
+            std::cout << "Check" << std::endl;
+
         // print move
         print_moves(turns_str);
 

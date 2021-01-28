@@ -1,5 +1,5 @@
-#ifndef VALIDATION_H
-#define VALIDATION_H
+#ifndef GAMELOGIC_H
+#define GAMELOGIC_H
 
 
 struct Coordinates;
