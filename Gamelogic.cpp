@@ -17,7 +17,104 @@ int on_board(int x, int y) {
 }
 
 
-std::vector<int> valid_moves(std::vector<std::vector<int>> Board, int x, int z, std::string lastMove, int &en_passant_move) {
+
+int Check(std::vector<std::vector<int>> Board, int Player) {
+
+    //int check = 0;
+    int figure;
+    int king;
+    int enpassent_dummy = 0;
+    std::vector<int> moves;
+
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+
+            figure = Board[i][j];
+            if (figure * Player == 6) {
+                king = i*10 + j;
+
+                i = 8;
+                j = 8;
+            }
+        }
+    }
+
+
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+
+            if (Board[i][j] == 0) {
+                continue;
+            }
+            
+            moves = possible_moves(Board, j, i, "X0-X0", enpassent_dummy);
+
+            
+            for (unsigned int k = 0; k < moves.size(); k++) {
+                if (moves[k] == king) {
+                    return 1;
+                }
+
+            }
+            
+        }
+    }
+    
+    
+
+    return 0;
+
+
+}
+
+
+int NextCheck(std::vector<std::vector<int>> Board, int x1, int z1, int x2, int z2) {
+
+    std::vector<std::vector<int>> new_board;
+    Coordinates move;
+    int player = Board[z1][x1];
+    player = player/abs(player);
+    move.x1 = x1;
+    move.x2 = x2;
+    move.z1 = z1;
+    move.z2 = z2;
+
+    new_board = move_figure(Board, move, 0);
+
+    return Check(new_board, player);
+
+}
+
+
+
+int CheckMate(std::vector<std::vector<int>> Board, int Player) {
+
+    std::vector<int> any_valid_moves;
+    int en_passent_dummy = 0;
+    if (Check(Board, Player)) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (Board[i][j]*Player > 0) {
+
+                    any_valid_moves = Valid_moves(Board, j, i, "X0-X0", en_passent_dummy);
+                    if (any_valid_moves.size() > 0) {
+                        std::cout << "one possible zxzx" << i << j << any_valid_moves[0] << std::endl;
+                        return 0;
+                    }
+
+                }
+            }
+        }
+
+        return 1;
+    }
+
+    return 0;
+}
+
+
+
+std::vector<int> possible_moves(std::vector<std::vector<int>> Board, int x, int z, std::string lastMove, int &en_passant_move) {
 
     int figure, dir;
 
@@ -166,14 +263,45 @@ std::vector<int> valid_moves(std::vector<std::vector<int>> Board, int x, int z, 
     return moves;
 }
 
+
+std::vector<int> Valid_moves(std::vector<std::vector<int>> Board, int x, int z, std::string lastMove, int &en_passant_move) {
+
+    int x2, z2;
+    std::vector<int> possible;
+    std::vector<int> valid;
+    int en_passent = 0;
+    possible = possible_moves(Board, x, z, lastMove, en_passent);
+
+    for (unsigned int i = 0; i < possible.size(); i++) {
+        x2 = possible[i] % 10;
+        z2 = possible[i] / 10;
+        
+        if (!NextCheck(Board, x, z, x2, z2))
+            valid.push_back(possible[i]);
+
+    }
+
+    return valid;
+
+}
+
+
 std::vector<std::vector<int>> move_figure(std::vector<std::vector<int>> Board, Coordinates Move, int enPassant_logic) {
 
   
     int figure;
-    int dir;
+    //int dir;
+    
+
 
     figure = Board[Move.z1][Move.x1];
-    dir = figure/abs(figure);
+    
+    if (abs(figure) == 1 && (Move.z2 == 0 || Move.z2 == 7)) {
+        figure = 5;
+    }
+    
+    //std::cout << "out of if" << std::endl;
+    //dir = figure/abs(figure);
     Board[Move.z1][Move.x1] = 0;
     Board[Move.z2][Move.x2] = figure;
 
@@ -227,7 +355,7 @@ int false_move(std::string Input, std::vector<std::vector<int>> Board, std::stri
     // invalid move
     Message = "invalid move";
     int enPassantMove;
-    std::vector<int> moves = valid_moves(Board, x1, z1, LastMove, enPassantMove);
+    std::vector<int> moves = Valid_moves(Board, x1, z1, LastMove, enPassantMove);
     int move_possible = 0;
     std::vector<std::vector<int>> future_board;
 

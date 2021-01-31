@@ -44,13 +44,18 @@ int main(void) {
 
         // print board
         plot_board(board, title);
-        
-        if (Check(board, player))
-            std::cout << "Check" << std::endl;
 
         // print move
         print_moves(turns_str);
 
+        if (CheckMate(board, player)) {
+            std::cout << std::endl << "Check Mate!" << std::endl;
+            break;
+        }
+
+        if (Check(board, player))
+            std::cout << std::endl << "Check" << std::endl;
+        
 
         // input or computer
         PlayerType = players[(3-player)/2-1];
