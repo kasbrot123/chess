@@ -40,7 +40,7 @@ int main(void) {
     while (true) {
 
         // clear screen
-        //system ("CLS");
+        system ("CLS");
 
         // print board
         plot_board(board, title);
@@ -55,7 +55,12 @@ int main(void) {
 
         if (Check(board, player))
             std::cout << std::endl << "Check" << std::endl;
-        
+
+        if (SumBoard(board) == 12)
+        {
+            std::cout << std::endl <<"Draw!" << std::endl;
+            break;
+        }
 
         // input or computer
         PlayerType = players[(3-player)/2-1];

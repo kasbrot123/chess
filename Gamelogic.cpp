@@ -98,7 +98,7 @@ int CheckMate(std::vector<std::vector<int>> Board, int Player) {
 
                     any_valid_moves = Valid_moves(Board, j, i, "X0-X0", en_passent_dummy);
                     if (any_valid_moves.size() > 0) {
-                        std::cout << "one possible zxzx" << i << j << any_valid_moves[0] << std::endl;
+                        //std::cout << "one possible zxzx" << i << j << any_valid_moves[0] << std::endl;
                         return 0;
                     }
 
@@ -361,7 +361,7 @@ int false_move(std::string Input, std::vector<std::vector<int>> Board, std::stri
 
 
     for (unsigned int i = 0; i < moves.size(); i++) {
-        std::cout << "moving " << moves[i] << std::endl;
+        //std::cout << "moving " << moves[i] << std::endl;
         if (moves[i] == Code(z2, x2)) {
             move_possible = 1;
             if (enPassantMove == Code(z2, x2))

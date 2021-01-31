@@ -15,7 +15,7 @@ Coordinates coordsMove(std::string Input);
 std::string moveToString(Coordinates move);
 std::vector<std::vector<int>> init_board(void);
 void print_moves(std::vector<std::string> &Turns_str);
-
+int SumBoard(std::vector<std::vector<int>> Board);
 
 
 #endif

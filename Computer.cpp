@@ -20,19 +20,21 @@ int calculateScore(std::vector<std::vector<int>> Board, int Player) {
     int Score = 0;
     int New;
     int figure;
+    int sign;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             figure = Board[i][j];
-            New = figure*Player;
+            sign = figure/abs(figure);
+            New = figure*figure*figure*Player*pow(3, abs(sign+Player));
 
             Score = Score + New;
         }
     }
 
     if (Check(Board, Player))
-        Score = Score - 100;
+        Score = Score - 60;
     if (Check(Board, -Player))
-        Score = Score + 40;
+        Score = Score + 30;
     
 
 
@@ -125,14 +127,9 @@ int bestMove(std::vector<std::vector<int>> Board, int Player, int depth, int max
                 Score_max = Score;
                 Best = moves_and_scores[i].first;
             }
-            if (Score > Score_max) {
+            if ((Score > Score_max) && (rand() % 100 > 15)) {
                 Score_max = Score;
                 Best = moves_and_scores[i].first;
-            } else if (Score == Score_max) {
-                if ((rand() % 100) < 15) { // 15% probability -> mean at ca. 5 = n_best/2 
-                    Score_max = Score;
-                    Best = moves_and_scores[i].first;
-                }
             }
         }
 

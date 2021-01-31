@@ -109,3 +109,15 @@ void print_moves(std::vector<std::string> &Turns_str) {
 }
 
 
+int SumBoard(std::vector<std::vector<int>> Board) {
+
+    int sum;
+
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            sum = sum + abs(Board[i][j]);
+        }
+    }
+
+    return sum;
+}

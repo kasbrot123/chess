@@ -21,7 +21,7 @@ int inputComputer(std::vector<std::vector<int>> Board, int Player, std::string &
     
 
     int michi = 0;
-    score = bestMove(Board, Player, 1, 5, LastMove, best, michi);
+    score = bestMove(Board, Player, 1, 4, LastMove, best, michi);
     if (best.x1 == -1) {
         std::cout << "no move possible" << std::endl;
         input = "quit";
@@ -29,10 +29,10 @@ int inputComputer(std::vector<std::vector<int>> Board, int Player, std::string &
         input = moveToString(best);
     }
 
-    std::cout << "check: " << Check(Board, Player) << std::endl;
-    std::cout << michi << " number" << std::endl;
-    std::cout << "best: " << input << std::endl;
-    std::cout << "score " << score << std::endl;
+    //std::cout << "check: " << Check(Board, Player) << std::endl;
+    //std::cout << michi << " number" << std::endl;
+    //std::cout << "best: " << input << std::endl;
+    //std::cout << "score " << score << std::endl;
     //Sleep(sleep_time);
 
 
