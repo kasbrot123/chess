@@ -49,7 +49,7 @@ int main(void) {
         print_moves(turns_str);
 
         if (CheckMate(board, player)) {
-            std::cout << std::endl << "Check Mate!" << std::endl;
+            std::cout << std::endl << std::endl << "Check Mate!" << std::endl;
             break;
         }
 
