@@ -1,6 +1,6 @@
 # Chess Game
 
-Chess game in c++
+Terminal chess game in c++
 
 I wanted to do a project in c++ and created a terminal chess game. Some rules 
 are not implemented but 1 vs. 1 is possible to play. 
@@ -46,7 +46,6 @@ can also be used to pause a game and start at the last point.
 Here is an example of a simple play where white wins a dummy match. 
 ```
 $ game < game.txt
-...
 ```
 
 ![Example fo chess game](example_match_piping.png)
@@ -56,5 +55,5 @@ $ game < game.txt
 
 It is possible to define one or both players as computer player. Since the 
 computer player is not really well implemented (rather a test case) the game is 
-not really advanced. 
+not really advanced.
 
